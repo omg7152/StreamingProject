@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MAIN</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="main_top">
+    <div class="main_logo">
+        <button class="menu_button"></button>
+        <img src="../images/icon_logo.png" id="logo" onclick="changePage('/main')">
+    </div>
+    <div class="main_search">
+        <div class="search_box">
+            <input type="text" class="search_input" placeholder="검색">
+            <button class="search_button"></button>
+        </div>
+    </div>
+    <div class="main_setting">
+        <a>setting</a>
+    </div>
+</div>
+<div class="left_menu">
+    <div class="profile">
+        <div class="profile_image"></div>
+        <div class="profile_name">채널명</div>
+    </div>
+    <div class="common_menu">
+        <div class="each_menu">
+            <img class="menu_icon" src="../images/icon_home.png">대시보드
+        </div>
+        <br>
+        <div class="each_menu" onclick="changeIframeUrl('/channel_contents')">
+            <img class="menu_icon" src="../images/icon_popular.png">콘텐츠
+        </div>
+        <br>
+        <div class="each_menu">
+            <img class="menu_icon" src="../images/icon_library.png">재생목록
+        </div>
+        <br>
+        <div class="each_menu">
+            <img class="menu_icon" src="../images/icon_history.png">댓글
+        </div>
+        <br>
+    </div>
+    <div class="setting_menu">
+        <div class="each_menu">
+            <img class="menu_icon" src="../images/icon_setting.png">설정
+        </div>
+        <br>
+    </div>
+</div>
+<div class="left_menu_small" style="display:none;">
+    <div class="each_menu_small" title="홈"><img class="menu_icon" src="../images/icon_home.png"></div>
+    <br>
+    <div class="each_menu_small" title="인기"><img class="menu_icon" src="../images/icon_popular.png"></div>
+    <br>
+    <div class="each_menu_small" title="설정"><img class="menu_icon" src="../images/icon_setting.png"></div>
+    <br>
+</div>
+<div class="contents" id="contents">
+    <iframe src="../views/main/home.html" title="내용" class="content" id="content"></iframe>
+</div>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".menu_button").click(function () {
+            $(".left_menu").toggle();
+            $(".left_menu_small").toggle();
+
+            $("#contents").toggleClass('contents2');
+        });
+
+        $("[class*='each_menu']").mouseover(function (event) {
+            var target = event.target;
+            target.style.backgroundColor = '#1f1f1f';
+        })
+        $("[class*='each_menu']").mouseout(function (event) {
+            var target = event.target;
+            target.style.backgroundColor = '#282828';
+        })
+    });
+</script>
+</body>
+</html>

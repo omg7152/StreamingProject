@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>view</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="video_box">
+    <div class="video_content">
+        <video controls autoplay class="item">
+            <source type="video/mp4" id="video" src="/api/video/play/" th:attrappend="src=${id}">
+            <div>텍스트</div>
+        </video>
+    </div>
+    <div>
+        <div>title</div>
+        <div>explanation</div>
+    </div>
+</div>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

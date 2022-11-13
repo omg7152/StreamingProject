@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>콘텐츠</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="iframe_content">
+    <div class="content_title">
+        <div class="left_div">채널 콘텐츠</div>
+        <div class="right_div">
+            <button class="mid_btn" onclick="openModal('modal1');">동영상 업로드</button>
+        </div>
+    </div>
+    <table class="table">
+        <colgroup>
+            <col width="5%">
+            <col width="40%">
+            <col width="10%">
+            <col width="15%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="checkbox_cell">
+                <input type="checkbox" id="all_check">
+                <label for="all_check" class="checkbox_label"></label>
+            </th>
+            <th>동영상</th>
+            <th>공개상태</th>
+            <th>날짜</th>
+            <th>조회수</th>
+            <th>댓글</th>
+            <th>좋아요</th>
+        </tr>
+        </thead>
+        <colgroup>
+            <col width="10%">
+            <col width="40%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+        </colgroup>
+        <tbody>
+        <tr>
+            <td class="checkbox_cell">
+                <input type="checkbox" id="each_checkbox" class="each_checkbox">
+                <label for="each_checkbox" class="checkbox_label"></label>
+            </td>
+            <td>
+                <div class="thumbnail_img">썸네일</div>
+                <div class="video_info">
+                    <div class="video_title">제목</div>
+                    <div class="video_explanation">내용</div>
+                </div>
+            </td>
+            <td>미공개</td>
+            <td>2022년 11월 12일</td>
+            <td>30</td>
+            <td>20</td>
+            <td>10</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="modal"></div>
+<div class="modal-con modal1">
+    <a href="javascript:;" class="close">X</a>
+    <p class="title">동영상 업로드</p>
+    <div class="con">
+        <iframe src='/upload_video'></iframe>
+    </div>
+</div>
+
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/admin/channel_contents.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#all_check").change(function () {
+            if ($("#all_check").is(":checked")) {
+                $(".each_checkbox").prop("checked", true);
+            } else {
+                $(".each_checkbox").prop("checked", false);
+            }
+        });
+
+        $("#modal, .close").on('click',function(){
+            $("#modal").fadeOut(300);
+            $(".modal-con").fadeOut(300);
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>fileUpload</title>
+    <link rel="stylesheet" href="../css/style.css"></link>
+</head>
+<body>
+<div class="iframe_content">
+    <form class="file_upload_form" id="uploadForm">
+        <div class="drop-zone" id="fileDrop">
+            <div><img src="../images/icon_fileUpload.png"></div>
+            <div style="margin: 10px;">동영상 파일을 드래그 앤 드롭하여 업로드</div>
+            <input type="file" id="uploadFile" style="display: none;" />
+            <input type="button" value="파일추가" id="uploadFilebtn" class="upload_file_btn"/>
+        </div>
+    </form>
+</div>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/video/upload_video.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#uploadFilebtn").click(function(){
+            $("#uploadFile").click();
+        });
+
+        $("#uploadFile").change(function (){
+            selectFile();
+        })
+    });
+</script>
+</body>
+</html>

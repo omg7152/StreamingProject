@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../../css/style.css"></link>
+</head>
+<body class="account_comm">
+<div class="form">
+    <div class="new_account_form">
+        <div class="new_account_box">
+            <div class="logo">로고</div>
+            <br>
+            <div>
+                <b>아이디</b>
+                <div><input type="text" id="user_id" class="new_account_input"></div>
+                <div id="id_error" class="error_text"></div>
+                <div id="id_success" class="success_text"></div>
+                <br>
+                <b>비밀번호</b>
+                <div><input type="password" id="user_password" class="new_account_input"></div>
+                <br>
+                <b>비밀번호 재확인</b>
+                <div><input type="password" id="user_password2" class="new_account_input"></div>
+                <div id="password_error" class="error_text"></div>
+                <br>
+                <b>이름</b>
+                <div><input type="text" id="user_name" class="new_account_input"></div>
+                <div id="name_error" class="error_text"></div>
+                <br>
+                <b>생년월일</b>
+                <div>
+                    <input type="hidden" id="user_birth">
+                    <input type="text" id="year" class="mini_box" placeholder="년(4자)">
+                    <select id="month" class="mini_box">
+                        <option value="">월</option>
+                    </select>
+                    <select id="date" class="mini_box">
+                        <option value="">일</option>
+                    </select>
+                </div>
+                <div id="birth_error" class="error_text"></div>
+                <br>
+                <b>성별</b>
+                <div>
+                    <select id="user_gender" class="new_account_input">
+                        <option value="">성별</option>
+                        <option value="M">남자</option>
+                        <option value="F">여자</option>
+                        <option value="U">선택안함</option>
+                    </select>
+                </div>
+                <div id="gender_error" class="error_text"></div>
+                <br>
+                <b>이메일</b>
+                <div><input type="text" id="user_email" class="new_account_input"></div>
+                <div id="email_error" class="error_text"></div>
+                <br>
+                <b>휴대전화</b>
+                <div><input type="text" id="user_phone" class="new_account_input"></div>
+                <div id="phone_error" class="error_text"></div>
+                <br>
+                <div>
+                    <button id="create_btn" class="login_btn">회원가입</button>
+                </div>
+                <div id="error_massage" class="error_massage"></div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/user/new_account.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#id_error").hide();
+        $("#password_error").hide();
+        for (var i = 1; i < 13; i++) {
+            $('#month').append("<option value='" + String(i).padStart(2, "0") + "'>" + i + "</option>");
+        }
+
+        for (var i = 1; i < 32; i++) {
+            $('#date').append("<option value='" + String(i).padStart(2, "0") + "'>" + i + "</option>");
+        }
+
+        $('#user_id').on("blur", function () {
+            check_id();
+        });
+
+        $('#user_password2').on("blur", function () {
+            var user_password = $("#user_password").val();
+            var user_password2 = $("#user_password2").val();
+
+            if (user_password != user_password2) {
+                $("#password_error").text("비밀번호가 일치하지 않습니다.");
+                $("#password_error").show();
+                console.log("fail")
+            } else {
+                $("#password_error").hide();
+            }
+        });
+
+        $("#create_btn").click(function () {
+            insert_account();
+        });
+    });
+</script>
+</body>
+</html>

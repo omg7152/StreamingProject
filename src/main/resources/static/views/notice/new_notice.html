@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 등록</title>
+    <link rel="stylesheet" href="../css/style.css"></link>
+</head>
+<body>
+<div class="container">
+    <h2>공지사항 등록</h2>
+    <form id="frm" name="frm" method="post" action="/notice/insert_notice">
+        <table class="notice">
+            <tr>
+                <td align="center">제목</td>
+                <td><input type="text" id="title" name="title"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="contents" name="contents"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" id="submit" value="저장" class="btn">
+    </form>
+</div>
+</body>
+</html>

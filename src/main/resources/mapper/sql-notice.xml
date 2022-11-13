@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project.mapper.NoticeMapper">
+    <select id="select_notices" parameterType="hashmap" resultType="project.dto.NoticeDto">
+        <![CDATA[
+            SELECT
+                notice_idx,
+                title,
+                views,
+                created_datetime
+            FROM
+                t_notice 
+            WHERE
+                deleted_yn = 'N'
+            ORDER BY ${sort} desc
+            LIMIT 0, #{size}
+        ]]>
+    </select>
+    
+    <insert id="insert_notice" parameterType="project.dto.NoticeDto">
+        <![CDATA[
+            INSERT INTO t_notice
+            (
+                title,
+                contents,
+                created_datetime,
+                creator_id
+            )
+            VALUE
+            (
+                #{title},
+                #{contents},
+                NOW(),
+                'admin'
+            )
+        ]]>
+    </insert>
+    
+    <update id="update_views" parameterType="int">
+		<![CDATA[
+			UPDATE 
+				t_notice 
+			SET
+				views = views + 1
+			WHERE
+				notice_idx = #{noticeIdx}
+		]]>
+	</update>
+	
+	<select id="select_notice" parameterType="int" resultType="project.dto.NoticeDto">
+		<![CDATA[
+			SELECT 
+				notice_idx, title, contents, views,
+				created_datetime,
+				creator_id
+			FROM
+				t_notice 
+			WHERE
+				notice_idx = ${noticeIdx} AND deleted_yn = 'N'
+		]]>
+	</select>
+	
+	<update id="update_notice" parameterType="project.dto.NoticeDto">
+        <![CDATA[
+            UPDATE 
+                t_notice 
+            SET
+                title = #{title},
+                contents = #{contents},
+                updated_datetime = NOW(),
+                updater_id = 'admin'
+            WHERE
+                notice_idx = #{noticeIdx}
+        ]]>
+    </update>
+
+    <update id="delete_notice" parameterType="int">
+        <![CDATA[
+            UPDATE
+                t_notice 
+            SET
+                deleted_yn = 'Y',
+                updated_datetime = NOW(),
+                updater_id = 'admin'
+            WHERE
+                notice_idx = #{noticeIdx}
+        ]]>
+    </update>
+</mapper>

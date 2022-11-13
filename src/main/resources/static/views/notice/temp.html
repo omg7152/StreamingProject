@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h2>공지사항</h2>
+    <select id="size" style="float: right;">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>30</option>
+    </select>
+    <table class="board_list">
+        <colgroup>
+            <col width="15%"/>
+            <col width="*"/>
+            <col width="15%"/>
+            <col width="20%"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">글번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">조회수</th>
+            <th scope="col">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="4">조회된 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/board/openBoardWrite" class="btn">글 쓰기</a>
+    <select id="sort" style="float: right;">
+        <option value="created_datetime">날짜순</option>
+        <option value="hit_cnt">조회수</option>
+    </select>
+</div>
+</body>
+</html>

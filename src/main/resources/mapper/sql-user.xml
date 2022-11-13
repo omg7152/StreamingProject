@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project.mapper.UserMapper">
+    <select id="select_user" parameterType="hashmap" resultType="project.dto.UserDto">
+        <![CDATA[
+            SELECT id, password, name, birth, gender, email, phone
+              FROM t_user
+             WHERE id = #{id}
+           	   AND password = #{password}
+        ]]>
+    </select>
+    
+    <select id="check_id" parameterType="hashmap" resultType="project.dto.UserDto">
+        <![CDATA[
+            SELECT id, password, name, birth, gender, email, phone
+              FROM t_user
+             WHERE id = #{id}
+        ]]>
+    </select>
+    
+    <select id="getSalt" parameterType="string" resultType="string">
+        <![CDATA[
+            SELECT salt
+              FROM t_user
+             WHERE id = #{id}
+        ]]>
+    </select>
+    
+    <insert id="insert_account" parameterType="map">
+        <![CDATA[
+			INSERT INTO t_user 
+			VALUES (0, #{id}, #{password}, #{name}, #{email}, #{birth}, #{gender}, #{phone}, #{salt})
+        ]]>
+    </insert>
+</mapper>
